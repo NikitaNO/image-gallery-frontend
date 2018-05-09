@@ -1,0 +1,29 @@
+<div class="message" *ngIf="!(photos.length > 0)">
+    <p>There are no photos uploaded yet, you can start over here</p>
+    <button mat-raised-button (click)="addPhoto()">Upload image</button>
+</div>
+<div class="row" *ngIf="photos.length > 0">
+    <ul id="thumbnailsList">
+        <li *ngFor="let photo of (photos)" [contextMenu]="basicMenu" [contextMenuSubject]="photo">
+            <img src="http://localhost:8080/{{ photo.id }}.jpg" class="tn" width="300" height="200">
+        </li>
+    </ul>
+    <button mat-raised-button (click)="addPhoto()">Upload image</button>
+</div>
+<context-menu>
+    <ng-template contextMenuItem [subMenu]="copySubMenu">Copy to</ng-template>
+    <context-menu #copySubMenu>
+        <ng-template *ngFor="let album of albums" contextMenuItem let-item
+                     (execute)="copyPhoto($event.item._id, album._id)">{{album.name}}
+        </ng-template>
+    </context-menu>
+    <ng-template contextMenuItem [subMenu]="moveSubMenu">Move to</ng-template>
+    <context-menu #moveSubMenu>
+        <ng-template *ngFor="let album of albums" contextMenuItem let-item
+                     (execute)="movePhoto($event.item._id, album._id)">{{album.name}}
+        </ng-template>
+    </context-menu>
+    <ng-template contextMenuItem (execute)="showMessage('Hi, ' + $event.item.title, $event)">Remove</ng-template>
+    <ng-template contextMenuItem (execute)="showMessage('Hi, ' + $event.item.title, $event)">Edit</ng-template>
+
+</context-menu>

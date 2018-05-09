@@ -1,0 +1,23 @@
+<form [formGroup]="albumForm" (ngSubmit)="addAlbum()" enctype="multipart/form-data">
+    <div class="form-group">
+        <mat-form-field style="width: 100%">
+            <input matInput class="form-control" formControlName="title" placeholder="name">
+        </mat-form-field>
+        <mat-form-field style="width: 100%">
+            <input matInput class="form-control" formControlName="description" placeholder="Description">
+        </mat-form-field>
+        <mat-form-field style="width: 100%">
+            <input matInput class="form-control" formControlName="location" placeholder="Location">
+        </mat-form-field>
+        <label class="center-block">Cover image:
+            <input type="file" class="form-control" formControlName="cover_image" accept="image/*"
+                   (change)="imageUpload($event)">
+        </label>
+    </div>
+    <div class="button-wrapper">
+        <button mat-raised-button (click)="closeDialog()">Close</button>
+        <button mat-raised-button type="submit"
+                [disabled]="albumForm.invalid" class="btn btn-success">Save
+        </button>
+    </div>
+</form>

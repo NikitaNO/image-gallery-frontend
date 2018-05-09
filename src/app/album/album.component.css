@@ -1,0 +1,35 @@
+/deep/ .ngx-contextmenu .dropdown-menu {
+    border: solid 1px #d7d7d7;
+    background-color: white;
+    padding: 0;
+}
+
+/deep/ .ngx-contextmenu li {
+    display: block;
+    border-top: solid 1px #d7d7d7;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+/deep/ .ngx-contextmenu li:first-child {
+    border-top: none;
+}
+
+/deep/ .ngx-contextmenu a {
+    text-decoration: none;
+    color: black;
+    display: block;
+    padding: 0.5em 1em;
+}
+
+/deep/ .ngx-contextmenu a:hover {
+    color: white;
+    background-color: #d7d7d7;
+}
+
+.message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+}

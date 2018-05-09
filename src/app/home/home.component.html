@@ -1,0 +1,14 @@
+<div class="message" *ngIf="!(albums?.length > 0)">
+    <p>There are no albums created yet, you can start over here</p>
+    <button mat-raised-button (click)="addAlbum()">Create album</button>
+</div>
+<div class="row" *ngIf="albums?.length > 0">
+    <ul id="thumbnailsList">
+        <li *ngFor="let album of (albums)">
+            <a [routerLink]="['/album', album._id]">
+                <img src="http://localhost:8080/{{ album.cover_image }}.jpg" class="tn" width="300" height="200">
+            </a>
+        </li>
+    </ul>
+    <button mat-raised-button (click)="addAlbum()">Create album</button>
+</div>

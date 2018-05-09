@@ -1,0 +1,22 @@
+<form [formGroup]="photoForm" (ngSubmit)="closeDialog()" enctype="multipart/form-data">
+    <div class="form-group">
+        <mat-form-field style="width: 100%">
+            <input matInput class="form-control" formControlName="title" placeholder="Title">
+        </mat-form-field>
+        <mat-form-field style="width: 100%">
+            <input matInput class="form-control" formControlName="description" placeholder="Description">
+        </mat-form-field>
+        <mat-form-field style="width: 100%">
+            <input matInput class="form-control" formControlName="hash_tags" placeholder="Hash tags">
+        </mat-form-field>
+        <label class="center-block">Image File:
+            <input type="file" class="form-control" formControlName="image_file" accept="image/*">
+        </label>
+    </div>
+    <div class="button-wrapper">
+        <button mat-raised-button (click)="closeDialog()">Close</button>
+        <button mat-raised-button type="submit"
+                [disabled]="photoForm.invalid" class="btn btn-success">Save
+        </button>
+    </div>
+</form>
