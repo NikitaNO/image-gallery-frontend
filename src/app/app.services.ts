@@ -18,7 +18,6 @@ export class Portal {
     createAlbum(fileToUpload: File, data: any): Observable<any> {
         const formData: FormData = new FormData();
         Object.keys(data).forEach(key => {
-            console.log(key, data[key]);
             formData.append(key, data[key]);
         });
         formData.append('cover_image', fileToUpload, fileToUpload.name);
@@ -33,7 +32,6 @@ export class Portal {
     addPhoto(fileToUpload: File, data: any) {
         const formData: FormData = new FormData();
         Object.keys(data).forEach(key => {
-            console.log(key, data[key]);
             formData.append(key, data[key]);
         });
         formData.append('image_file', fileToUpload, fileToUpload.name);

@@ -17,7 +17,6 @@ export class AddPhotoComponent {
     constructor(public dialogRef: MatDialogRef<AddPhotoComponent>,
                 @Optional() @Inject(MAT_DIALOG_DATA) public data: any,
                 private fb: FormBuilder) {
-        console.log('add photo', data);
         this.photoForm = this.fb.group({
             title: '',
             description: '',
