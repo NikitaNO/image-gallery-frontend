@@ -33,3 +33,24 @@
     align-items: center;
     padding-top: 10px;
 }
+
+.photo-details {
+    position: absolute;
+    color: white;
+    background-color: rgba(0,0,0,0.5);
+    bottom: 4px;
+    width: 100%;
+    text-align: center;
+}
+.photo-details p {
+    margin: 5px 0;
+}
+.wrapper {
+    position: relative;
+    list-style-type: none;
+    margin: 5px;
+}
+.thumbnailsList {
+    display: flex;
+    flex-wrap: wrap;
+}

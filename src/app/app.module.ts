@@ -7,6 +7,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ReactiveFormsModule} from '@angular/forms';
 import {ContextMenuModule, ContextMenuService} from 'ngx-contextmenu';
+import { AgmCoreModule } from '@agm/core';
+import { NguCarouselModule } from '@ngu/carousel';
 
 import {Portal} from './app.services';
 import {AppRoutingModule} from './app-routing.module';
@@ -16,6 +18,11 @@ import {HomeComponent} from './home/home.component';
 import {AlbumComponent} from './album/album.component';
 import {AddPhotoComponent} from './add-photo/add-photo.component';
 import {AddAlbumComponent} from './add-album/add-album.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatListModule} from '@angular/material/list';
+import {MatIconModule} from '@angular/material/icon';
+import { CarouselModalComponent } from './carousel-modal/carousel-modal.component';
+
 
 @NgModule({
     declarations: [
@@ -25,6 +32,7 @@ import {AddAlbumComponent} from './add-album/add-album.component';
         AlbumComponent,
         AddPhotoComponent,
         AddAlbumComponent,
+        CarouselModalComponent,
     ],
     imports: [
         BrowserModule,
@@ -34,12 +42,21 @@ import {AddAlbumComponent} from './add-album/add-album.component';
         MatDialogModule,
         BrowserAnimationsModule,
         ContextMenuModule,
+        MatIconModule,
         MatInputModule,
-        MatButtonModule
+        MatListModule,
+        MatButtonModule,
+        NguCarouselModule,
+        MatToolbarModule,
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyBC4lGj7GGEzduY0nV5bgLJFka-CvAZ3ts',
+            libraries: ['places']
+        })
     ],
     entryComponents: [
         AddPhotoComponent,
-        AddAlbumComponent
+        AddAlbumComponent,
+        CarouselModalComponent
     ],
     providers: [Portal, ContextMenuService],
     bootstrap: [AppComponent]

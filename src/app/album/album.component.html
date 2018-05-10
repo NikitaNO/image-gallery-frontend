@@ -2,10 +2,13 @@
     <p>There are no photos uploaded yet, you can start over here</p>
     <button mat-raised-button (click)="addPhoto()">Upload image</button>
 </div>
-<div class="row" *ngIf="photos.length > 0">
-    <ul id="thumbnailsList">
-        <li *ngFor="let photo of (photos)" [contextMenu]="basicMenu" [contextMenuSubject]="photo">
-            <img src="http://localhost:8080/{{ photo.id }}.jpg" class="tn" width="300" height="200">
+<div class="row" *ngIf="photos.length > 0 && !isCarousel">
+    <ul class="thumbnailsList">
+        <li class="wrapper" *ngFor="let photo of (photos)" [contextMenu]="basicMenu" [contextMenuSubject]="photo" (click)="detailedView(photo)" >
+            <img src="http://localhost:8080/{{ photo.image_file }}" class="tn" width="300" height="200">
+            <div class="photo-details">
+                <p>{{photo.title}}</p>
+            </div>
         </li>
     </ul>
     <button mat-raised-button (click)="addPhoto()">Upload image</button>
@@ -14,7 +17,7 @@
     <ng-template contextMenuItem [subMenu]="copySubMenu">Copy to</ng-template>
     <context-menu #copySubMenu>
         <ng-template *ngFor="let album of albums" contextMenuItem let-item
-                     (execute)="copyPhoto($event.item._id, album._id)">{{album.name}}
+                     (execute)="copyPhoto($event.item, album._id)">{{album.name}}
         </ng-template>
     </context-menu>
     <ng-template contextMenuItem [subMenu]="moveSubMenu">Move to</ng-template>
@@ -23,7 +26,6 @@
                      (execute)="movePhoto($event.item._id, album._id)">{{album.name}}
         </ng-template>
     </context-menu>
-    <ng-template contextMenuItem (execute)="showMessage('Hi, ' + $event.item.title, $event)">Remove</ng-template>
-    <ng-template contextMenuItem (execute)="showMessage('Hi, ' + $event.item.title, $event)">Edit</ng-template>
-
+    <ng-template contextMenuItem (execute)="removePhoto($event.item._id)">Remove</ng-template>
+    <ng-template contextMenuItem (execute)="addPhoto($event.item)">Edit</ng-template>
 </context-menu>

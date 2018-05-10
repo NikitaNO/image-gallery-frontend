@@ -1,3 +1,31 @@
-<p>
-    header works!
-</p>
+<mat-toolbar>
+    <mat-form-field style="width: 100%">
+        <input matInput class="form-control" [formControl]="search" placeholder="Search">
+    </mat-form-field>
+    <button  mat-icon-button>
+        <mat-icon (click)="close()">close</mat-icon>
+    </button>
+
+</mat-toolbar>
+<div class="search-result-container" *ngIf="searchData | async as data">
+    <mat-list>
+        <h2 mat-subheader>Albums</h2>
+
+        <mat-list-item  *ngFor="let album of data.albums" [routerLink]="['/album', album._id]" (click)="close()">
+            <img matListAvatar src="http://localhost:8080/{{ album.cover_image }}" alt="...">
+            <h3 matLine> {{album.name}} </h3>
+            <p matLine>
+            </p>
+        </mat-list-item>
+
+        <h2 mat-subheader>Photos</h2>
+        <mat-list-item *ngFor="let photo of data.photos" [routerLink]="['/album', photo.album_id]" (click)="close()">
+            <img matListAvatar src="http://localhost:8080/{{ photo.image_file }}" alt="...">
+            <h3 matLine> {{photo.title}} </h3>
+            <p matLine>
+            </p>
+        </mat-list-item>
+
+
+    </mat-list>
+</div>

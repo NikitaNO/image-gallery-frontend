@@ -1,0 +1,9 @@
+<ngu-carousel
+        [inputs]="carouselOne"
+        (carouselLoad)="myfunc($event)">
+    <ngu-item *ngFor="let photo of data.photos" NguCarouselItem style="display: flex;">
+        <img src="http://localhost:8080/{{ photo.image_file }}" alt="" style="margin: auto;">
+    </ngu-item>
+    <button mat-icon-button NguCarouselPrev class='leftRs' style="float: left;"><mat-icon>chevron_left</mat-icon></button>
+    <button mat-icon-button NguCarouselNext class='rightRs' style="float: right"><mat-icon>chevron_right</mat-icon></button>
+</ngu-carousel>

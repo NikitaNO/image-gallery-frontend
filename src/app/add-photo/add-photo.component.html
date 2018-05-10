@@ -1,4 +1,4 @@
-<form [formGroup]="photoForm" (ngSubmit)="closeDialog()" enctype="multipart/form-data">
+<form [formGroup]="photoForm" (ngSubmit)="addAlbum()" enctype="multipart/form-data">
     <div class="form-group">
         <mat-form-field style="width: 100%">
             <input matInput class="form-control" formControlName="title" placeholder="Title">
@@ -9,8 +9,9 @@
         <mat-form-field style="width: 100%">
             <input matInput class="form-control" formControlName="hash_tags" placeholder="Hash tags">
         </mat-form-field>
-        <label class="center-block">Image File:
-            <input type="file" class="form-control" formControlName="image_file" accept="image/*">
+        <label class="center-block" *ngIf="!data">Image File:
+            <input type="file" class="form-control" formControlName="image_file" accept="image/*"
+                   (change)="imageUpload($event)">
         </label>
     </div>
     <div class="button-wrapper">

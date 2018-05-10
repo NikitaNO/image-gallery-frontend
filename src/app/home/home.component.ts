@@ -1,19 +1,21 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {Portal} from '../app.services';
 import {AddAlbumComponent} from '../add-album/add-album.component';
+import 'rxjs/add/operator/mergeMap';
+
 
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+
     albums: any[] = [];
 
     constructor(private portal: Portal, public dialog: MatDialog) {
-        this.portal.getAlbums()
-            .subscribe((data: any) => this.albums = data.albums);
+
     }
 
     addAlbum() {
@@ -21,16 +23,15 @@ export class HomeComponent {
             width: '300px',
             disableClose: true,
         });
-        dialogRef.afterClosed().subscribe(result => {
-            if (result) {
-                this.portal.createAlbum(result)
-                    .subscribe((data: any) => {
-                        if (data.message === 'success') {
-                            this.portal.getAlbums()
-                                .subscribe((data: any) => this.albums = data.albums);
-                        }
-                    });
-            }
-        });
+
+        dialogRef.afterClosed()
+            .flatMap((res) => res && this.portal.createAlbum(res.file, res.data))
+            .flatMap((album) => this.portal.getAlbums())
+            .subscribe((data: any) => this.albums = data.albums);
+    }
+
+    ngOnInit(): void {
+        this.portal.getAlbums()
+            .subscribe((data: any) => this.albums = data.albums);
     }
 }

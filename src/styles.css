@@ -1,1 +1,9 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+agm-map {
+    height: 200px;
+}
+body{
+    margin: 0;
+    padding: 0;
+}
