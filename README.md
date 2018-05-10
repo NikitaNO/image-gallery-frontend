@@ -9,6 +9,4 @@
 
 TODO
 * [1]. do better styles
-* [2]. image uploading to backend
-* [3]. location picker
-* [4]. search field
+* [2]. code refactor
