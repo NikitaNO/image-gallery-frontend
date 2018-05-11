@@ -14,17 +14,25 @@
 .album-details {
     position: absolute;
     color: white;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     bottom: 14px;
     left: 11px;
     width: 93%;
     text-align: center;
 }
+
 .wrapper {
     position: relative;
     list-style-type: none;
 }
+
 .thumbnailsList {
     display: flex;
     flex-wrap: wrap;
+}
+
+.mat-raised-button {
+    position: absolute;
+    right: 20px;
+    top: 13px;
 }

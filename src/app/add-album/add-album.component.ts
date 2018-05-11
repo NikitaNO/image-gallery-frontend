@@ -1,7 +1,7 @@
 import {Component, NgZone, ViewChild, OnInit, ElementRef} from '@angular/core';
 import {MatDialogRef} from '@angular/material';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import { MapsAPILoader } from '@agm/core';
+import {MapsAPILoader} from '@agm/core';
 import {} from '@types/googlemaps';
 
 @Component({
@@ -23,7 +23,8 @@ export class AddAlbumComponent implements OnInit {
     constructor(public dialogRef: MatDialogRef<AddAlbumComponent>,
                 private fb: FormBuilder,
                 private mapsAPILoader: MapsAPILoader,
-                private ngZone: NgZone) { }
+                private ngZone: NgZone) {
+    }
 
     ngOnInit() {
         this.albumForm = this.fb.group({
@@ -62,7 +63,7 @@ export class AddAlbumComponent implements OnInit {
         });
     }
 
-    private setCurrentPosition() {
+    private setCurrentPosition(): void {
         if ('geolocation' in navigator) {
             navigator.geolocation.getCurrentPosition((position) => {
                 this.latitude = position.coords.latitude;
@@ -72,15 +73,15 @@ export class AddAlbumComponent implements OnInit {
         }
     }
 
-    imageUpload(e) {
+    imageUpload(e): void {
         this.fileToUpload = e.target.files.item(0);
     }
 
-    addAlbum() {
+    addAlbum(): void {
         this.dialogRef.close({file: this.fileToUpload, data: this.albumForm.value});
     }
 
-    closeDialog() {
-        this.dialogRef.close();
+    closeDialog(): void {
+        this.dialogRef.close('');
     }
 }

@@ -12,9 +12,11 @@ export class Portal {
     getAlbums(): Observable<any> {
         return this._http.get(`${environment.base_url}/albums`);
     }
+
     search(name): Observable<any> {
         return this._http.get(`${environment.base_url}/search?name=${name}`);
     }
+
     createAlbum(fileToUpload: File, data: any): Observable<any> {
         const formData: FormData = new FormData();
         Object.keys(data).forEach(key => {

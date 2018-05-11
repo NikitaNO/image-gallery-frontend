@@ -2,16 +2,17 @@
     <p>There are no photos uploaded yet, you can start over here</p>
     <button mat-raised-button (click)="addPhoto()">Upload image</button>
 </div>
-<div class="row" *ngIf="photos.length > 0 && !isCarousel">
+<div class="row" *ngIf="photos.length > 0">
+    <button mat-raised-button (click)="addPhoto()">Upload image</button>
     <ul class="thumbnailsList">
-        <li class="wrapper" *ngFor="let photo of (photos)" [contextMenu]="basicMenu" [contextMenuSubject]="photo" (click)="detailedView(photo)" >
-            <img src="http://localhost:8080/{{ photo.image_file }}" class="tn" width="300" height="200">
+        <li class="wrapper" *ngFor="let photo of (photos)" [contextMenu]="basicMenu" [contextMenuSubject]="photo"
+            (click)="detailedView(photo)">
+            <img src="{{photo_url}}/{{ photo.image_file }}" class="tn" width="300" height="200">
             <div class="photo-details">
                 <p>{{photo.title}}</p>
             </div>
         </li>
     </ul>
-    <button mat-raised-button (click)="addPhoto()">Upload image</button>
 </div>
 <context-menu>
     <ng-template contextMenuItem [subMenu]="copySubMenu">Copy to</ng-template>
@@ -27,5 +28,5 @@
         </ng-template>
     </context-menu>
     <ng-template contextMenuItem (execute)="removePhoto($event.item._id)">Remove</ng-template>
-    <ng-template contextMenuItem (execute)="addPhoto($event.item)">Edit</ng-template>
+    <ng-template contextMenuItem (execute)="editPhoto($event.item)">Edit</ng-template>
 </context-menu>

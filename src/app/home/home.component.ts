@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {Portal} from '../app.services';
 import {AddAlbumComponent} from '../add-album/add-album.component';
+import {environment} from '../../environments/environment';
 import 'rxjs/add/operator/mergeMap';
 
 
@@ -12,10 +14,12 @@ import 'rxjs/add/operator/mergeMap';
 })
 export class HomeComponent implements OnInit {
 
-    albums: any[] = [];
+    public albums: any[] = [];
+    public photo_url: string = environment.photo_url;
 
-    constructor(private portal: Portal, public dialog: MatDialog) {
-
+    constructor(private portal: Portal,
+                public dialog: MatDialog,
+                public snackBar: MatSnackBar) {
     }
 
     addAlbum() {
@@ -27,11 +31,32 @@ export class HomeComponent implements OnInit {
         dialogRef.afterClosed()
             .flatMap((res) => res && this.portal.createAlbum(res.file, res.data))
             .flatMap((album) => this.portal.getAlbums())
-            .subscribe((data: any) => this.albums = data.albums);
+            .subscribe((data) => {
+                this.albums = data.albums;
+                this.snackBar.open(
+                    'Successfully Created',
+                    'HIDE',
+                    {duration: 9000}
+                );
+            }, (err) => {
+                this.snackBar.open(
+                    'Server Error',
+                    'HIDE',
+                    {duration: 9000}
+                );
+            });
     }
 
     ngOnInit(): void {
         this.portal.getAlbums()
-            .subscribe((data: any) => this.albums = data.albums);
+            .subscribe((data) => {
+                this.albums = data.albums;
+            }, (err) => {
+                this.snackBar.open(
+                    'Server Error',
+                    'HIDE',
+                    {duration: 9000}
+                );
+            });
     }
 }

@@ -3,15 +3,16 @@
     <button mat-raised-button (click)="addAlbum()">Create album</button>
 </div>
 <div class="row" *ngIf="albums?.length > 0">
+    <button mat-raised-button (click)="addAlbum()">Create album</button>
+
     <ul class="thumbnailsList">
         <li class="wrapper" *ngFor="let album of (albums)">
             <a [routerLink]="['/album', album._id]">
-                <img src="http://localhost:8080/{{ album.cover_image }}" class="tn" width="300" height="200">
+                <img src="{{photo_url}}/{{ album.cover_image }}" class="tn" width="300" height="200">
             </a>
             <div class="album-details">
                 <p>{{album.name}}</p>
             </div>
         </li>
     </ul>
-    <button mat-raised-button (click)="addAlbum()">Create album</button>
 </div>

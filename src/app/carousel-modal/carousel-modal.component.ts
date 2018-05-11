@@ -3,15 +3,15 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 
 
 @Component({
-  selector: 'app-carousel-modal',
-  templateUrl: './carousel-modal.component.html',
-  styleUrls: ['./carousel-modal.component.css']
+    selector: 'app-carousel-modal',
+    templateUrl: './carousel-modal.component.html',
+    styleUrls: ['./carousel-modal.component.css']
 })
 export class CarouselModalComponent implements OnInit {
     public carouselOne: any;
 
-  constructor(public dialogRef: MatDialogRef<CarouselModalComponent>,
-              @Optional() @Inject(MAT_DIALOG_DATA) public data: any) { }
+    constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
+    }
 
     ngOnInit() {
         this.carouselOne = {
@@ -26,13 +26,6 @@ export class CarouselModalComponent implements OnInit {
             touch: true,
             loop: true,
             custom: 'banner'
-        }
+        };
     }
-
-    public myfunc(event: Event) {
-        // carouselLoad will trigger this funnction when your load value reaches
-        // it is helps to load the data by parts to increase the performance of the app
-        // must use feature to all carousel
-    }
-
 }

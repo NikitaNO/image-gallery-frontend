@@ -1,8 +1,6 @@
-import {Component, Inject, Optional} from '@angular/core';
+import {Component} from '@angular/core';
 import {MatDialogRef} from '@angular/material';
-import {MAT_DIALOG_DATA} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import * as cloneDeep from 'lodash.clonedeep';
 
 @Component({
     selector: 'app-add-photo',
@@ -11,11 +9,9 @@ import * as cloneDeep from 'lodash.clonedeep';
 })
 export class AddPhotoComponent {
     public photoForm: FormGroup;
-    private photo: any;
     public fileToUpload: File = null;
 
     constructor(public dialogRef: MatDialogRef<AddPhotoComponent>,
-                @Optional() @Inject(MAT_DIALOG_DATA) public data: any,
                 private fb: FormBuilder) {
         this.photoForm = this.fb.group({
             title: '',
@@ -23,30 +19,20 @@ export class AddPhotoComponent {
             hash_tags: '',
             image_file: ['', [Validators.required]]
         });
-        if (data) {
-            this.photo = cloneDeep(this.data);
-            this.photoForm.setValue({
-                title: data.title,
-                description: data.description,
-                hash_tags: data.hash_tags,
-                image_file: ''
-            });
-        }
     }
 
-    imageUpload(e) {
+    imageUpload(e): void {
         this.fileToUpload = e.target.files.item(0);
     }
 
-    addAlbum() {
-        const result = this.photoForm.value;
+    addPhoto(): void {
         this.dialogRef.close({
             file: this.fileToUpload,
-            data: this.data ? Object.assign(this.photo, result) : result
+            data: this.photoForm.value
         });
     }
 
-    closeDialog() {
-        this.dialogRef.close();
+    closeDialog(): void {
+        this.dialogRef.close('');
     }
 }

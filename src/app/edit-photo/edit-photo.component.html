@@ -9,11 +9,6 @@
         <mat-form-field style="width: 100%">
             <input matInput class="form-control" formControlName="hash_tags" placeholder="Hash tags">
         </mat-form-field>
-        <mat-form-field style="width: 100%">
-            <ngx-mat-file-input type="file" class="form-control" formControlName="image_file" accept="image/*"
-                                (change)="imageUpload($event)" placeholder="Image File: *"></ngx-mat-file-input>
-            <mat-icon matSuffix>folder</mat-icon>
-        </mat-form-field>
     </div>
     <div class="button-wrapper">
         <button mat-raised-button type="button" (click)="closeDialog()">Close</button>
@@ -22,3 +17,4 @@
         </button>
     </div>
 </form>
+

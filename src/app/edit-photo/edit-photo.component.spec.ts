@@ -1,20 +1,20 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {CarouselModalComponent} from './carousel-modal.component';
+import {EditPhotoComponent} from './edit-photo.component';
 
-describe('CarouselModalComponent', () => {
-    let component: CarouselModalComponent;
-    let fixture: ComponentFixture<CarouselModalComponent>;
+describe('EditPhotoComponent', () => {
+    let component: EditPhotoComponent;
+    let fixture: ComponentFixture<EditPhotoComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [CarouselModalComponent]
+            declarations: [EditPhotoComponent]
         })
             .compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(CarouselModalComponent);
+        fixture = TestBed.createComponent(EditPhotoComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });
